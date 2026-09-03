@@ -1,0 +1,30 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\Tariff;
+
+class TariffSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $admin = \App\Models\User::where('username', 'admin')->first();
+
+        $tariffs = [
+            ['vehicle_type' => 'roda23',    'amount' => 2000],
+            ['vehicle_type' => 'roda4',     'amount' => 3000],
+            ['vehicle_type' => 'rodaplus4', 'amount' => 4000],
+            ['vehicle_type' => 'bermalam',  'amount' => 0],
+        ];
+
+        foreach ($tariffs as $tariff) {
+            Tariff::create([
+                'vehicle_type'   => $tariff['vehicle_type'],
+                'amount'         => $tariff['amount'],
+                'effective_date' => now()->toDateString(),
+                'created_by'     => $admin->id,
+            ]);
+        }
+    }
+}
