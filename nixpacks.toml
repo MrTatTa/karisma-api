@@ -1,10 +1,10 @@
 # nixpacks.toml
 [phases.setup]
-nixPkgs = ["php82", "php82Extensions.pdo", "php82Extensions.pdo_mysql", "php82Extensions.mbstring", "php82Extensions.xml", "php82Extensions.tokenizer", "php82Extensions.bcmath", "php82Extensions.curl", "php82Extensions.zip"]
+nixPkgs = ["php", "phpPackages.composer"]
 
 [phases.install]
 cmds = [
-  "curl -sS https://getcomposer.org/installer | php82 -- --install-dir=/usr/local/bin --filename=composer && composer install --no-dev --optimize-autoloader"
+  "composer install --no-dev --optimize-autoloader"
 ]
 
 [phases.build]
