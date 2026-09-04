@@ -10,10 +10,10 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::create([
+        User::firstOrCreate([
             'name'      => 'Administrator',
             'username'  => 'admin',
-            'password'  => Hash::make('admin123'),
+            'password'  => Hash::make('birdman1'),
             'role'      => 'admin',
             'is_active' => true,
         ]);

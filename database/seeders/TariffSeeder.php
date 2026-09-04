@@ -15,11 +15,11 @@ class TariffSeeder extends Seeder
             ['vehicle_type' => 'roda23',    'amount' => 2000],
             ['vehicle_type' => 'roda4',     'amount' => 3000],
             ['vehicle_type' => 'rodaplus4', 'amount' => 4000],
-            ['vehicle_type' => 'bermalam',  'amount' => 0],
+            ['vehicle_type' => 'bermalam',  'amount' => 20000],
         ];
 
         foreach ($tariffs as $tariff) {
-            Tariff::create([
+            Tariff::firstOrCreate([
                 'vehicle_type'   => $tariff['vehicle_type'],
                 'amount'         => $tariff['amount'],
                 'effective_date' => now()->toDateString(),
