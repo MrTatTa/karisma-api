@@ -19,12 +19,17 @@ class TariffSeeder extends Seeder
         ];
 
         foreach ($tariffs as $tariff) {
-            Tariff::firstOrCreate([
-                'vehicle_type'   => $tariff['vehicle_type'],
-                'amount'         => $tariff['amount'],
-                'effective_date' => now()->toDateString(),
-                'created_by'     => $admin->id,
-            ]);
+            // Cek apakah sudah ada tarif untuk kategori ini
+            $exists = Tariff::where('vehicle_type', $tariff['vehicle_type'])->exists();
+
+            if (!$exists) {
+                Tariff::create([
+                    'vehicle_type'   => $tariff['vehicle_type'],
+                    'amount'         => $tariff['amount'],
+                    'effective_date' => now()->toDateString(),
+                    'created_by'     => $admin->id,
+                ]);
+            }
         }
     }
 }
