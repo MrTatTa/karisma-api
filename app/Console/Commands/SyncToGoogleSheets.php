@@ -17,8 +17,8 @@ class SyncToGoogleSheets extends Command
 
     public function handle()
     {
-        $date     = $this->option('date') ?? now()->toDateString();
-        $carbon   = Carbon::parse($date);
+        $date   = $this->option('date') ?? now()->timezone('Asia/Jakarta')->toDateString();
+        $carbon = Carbon::parse($date)->timezone('Asia/Jakarta');
         $monthTab = strtoupper($carbon->locale('id')->monthName);
 
         $this->info("Syncing data untuk $date ke tab $monthTab...");
